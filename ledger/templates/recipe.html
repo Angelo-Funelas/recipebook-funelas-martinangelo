@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Recipe #{{recipe_index}}{% endblock %}
 {% block body %}
+    <a href="{% url 'index' %}" class="nav-link">< Go back</a>
     <h1>{{recipe.name}}</h1>
     <table>
         <tr>
