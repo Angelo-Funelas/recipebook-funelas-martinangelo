@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background-color: #00ddc0;
+            margin: 0;
+            padding: 2rem;
+        }
+        nav > h1 {
+            margin: 0;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    {% block body %}
-    {% endblock %}
+    <nav>
+        <h1>Recipe Book</h1>
+    </nav>
+    <main>
+        {% block body %}
+        {% endblock %}
+    </main>
 </body>
 </html>
