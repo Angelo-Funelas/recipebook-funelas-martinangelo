@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Recipe List{% endblock %}
+{% block body %}
+    <article>
+        {% for recipe in recipes %}
+            <a href="{{recipe.link}}"><div><img src="" class="recipe-img"><p>{{recipe.name}}</p></div></a>
+        {% endfor %}
+    </article>
+{% endblock %}
