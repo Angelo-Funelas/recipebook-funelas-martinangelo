@@ -3,8 +3,12 @@
 {% block title %}Recipe List{% endblock %}
 {% block body %}
     <article>
-        {% for recipe in recipes %}
-            <a href="{{recipe.get_absolute_url}}"><div><img src="" class="recipe-img"><p>{{recipe.name}}</p></div></a>
-        {% endfor %}
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <a href="{{recipe.get_absolute_url}}"><div><img src="" class="recipe-img"><p>{{recipe.name}}</p></div></a>
+            {% endfor %}
+        {% else %}
+            <h3>Sorry, no recipes found.</h3>
+        {% endif %}
     </article>
 {% endblock %}
