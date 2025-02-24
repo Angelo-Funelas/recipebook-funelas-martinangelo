@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 RECIPE_DATA = [
         {
@@ -66,7 +67,7 @@ RECIPE_DATA = [
 # Create your views here.
 def index(request):
     return render(request, "index.html", {
-        "recipes": RECIPE_DATA
+        "recipes": Recipe.objects.all()
     })
 
 def recipe(request, recipe_index):
