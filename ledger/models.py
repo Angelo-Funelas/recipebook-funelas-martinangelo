@@ -16,7 +16,7 @@ class Recipe(models.Model):
     
 class RecipeIngredient(models.Model):
     Quantity = models.IntegerField(default=1)
-    Ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name="ingredient")
-    Recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe")
+    Ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name="recipe_ingredients")
+    Recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
     def __str__(self):
         return self.Ingredient.name
