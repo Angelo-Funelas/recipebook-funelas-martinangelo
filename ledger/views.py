@@ -8,7 +8,8 @@ def index(request):
     })
 
 def recipe(request, recipeID):
+    recipe = Recipe.objects.get(id=recipeID)
     return render(request, "recipe.html", {
-        "recipe": Recipe.objects.get(id=recipeID),
-        "ingredients": RecipeIngredient.objects.filter(Recipe_id=recipeID)
+        "recipe": recipe,
+        "ingredients": recipe.ingredients.all()
     })
