@@ -9,6 +9,6 @@ def index(request):
 
 def recipe(request, recipe_index):
     return render(request, "recipe.html", {
-        "recipe_index": recipe_index,
-        "recipe": None
+        "recipe": Recipe.objects.get(id=recipe_index),
+        "ingredients": RecipeIngredient.objects.filter(Recipe_id=recipe_index)
     })

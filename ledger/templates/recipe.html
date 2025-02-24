@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Recipe #{{recipe_index}}{% endblock %}
+{% block title %}{{recipe.name}} Recipe{% endblock %}
 {% block body %}
     <a href="{% url 'index' %}" class="nav-link">< Go back</a>
     <h1>{{recipe.name}}</h1>
@@ -9,12 +9,12 @@
             <th>Ingredient</th>
             <th>Quantity</th>
         </tr>
-        {% for ingredient in recipe.ingredients %}
+        {% for ingredient in ingredients %}
             <tr>
-                <td>{{ingredient.name}}</td>
+                <td>{{ingredient.Ingredient.name}}</td>
                 <td>
-                    {% if ingredient.quantity %}
-                        {{ingredient.quantity}}
+                    {% if ingredient.Quantity %}
+                        {{ingredient.Quantity}}
                     {% else %}
                         -----
                     {% endif %}
