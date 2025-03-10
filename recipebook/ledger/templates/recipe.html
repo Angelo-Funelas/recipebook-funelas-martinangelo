@@ -4,6 +4,7 @@
 {% block body %}
     <a href="{% url 'index' %}" class="nav-link">< Go back</a>
     <h1>{{recipe.name}}</h1>
+    <p>by {{recipe.author.name}}</p>
     <table>
         {% if ingredients %}
             <tr>
