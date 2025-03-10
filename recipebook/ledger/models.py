@@ -24,8 +24,8 @@ class Recipe(models.Model):
         return reverse("recipe", kwargs={"recipeID": self.id})
     
 class RecipeIngredient(models.Model):
-    Quantity = models.IntegerField(default=1)
-    Ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name="recipe_ingredients")
-    Recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
+    quantity = models.CharField(max_length=32)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT, related_name="recipe_ingredients")
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
     def __str__(self):
         return self.Ingredient.name

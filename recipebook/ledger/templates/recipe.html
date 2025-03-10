@@ -12,10 +12,10 @@
             </tr>
             {% for ingredient in ingredients %}
                 <tr>
-                    <td>{{ingredient.Ingredient.name}}</td>
+                    <td>{{ingredient.ingredient.name}}</td>
                     <td>
-                        {% if ingredient.Quantity %}
-                            {{ingredient.Quantity}}
+                        {% if ingredient.quantity %}
+                            {{ingredient.quantity}}
                         {% else %}
                             -----
                         {% endif %}

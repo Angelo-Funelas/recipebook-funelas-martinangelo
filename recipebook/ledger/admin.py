@@ -18,8 +18,8 @@ class IngredientAdmin(admin.ModelAdmin):
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     model = RecipeIngredient
-    list_display = ('Ingredient', 'Recipe', 'Quantity')
-    list_filter = ('Recipe', 'Ingredient')
+    list_display = ('ingredient', 'recipe', 'quantity')
+    list_filter = ('recipe', 'ingredient')
 
 class RecipeIngredientInline(admin.TabularInline):
     model = RecipeIngredient
