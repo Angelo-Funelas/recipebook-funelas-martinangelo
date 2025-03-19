@@ -2,8 +2,9 @@
 {% load static %}
 {% block title %}{{recipe.name}} Recipe{% endblock %}
 {% block body %}
-    <a href="{% url 'index' %}" class="nav-link">< Go back</a>
+    <a href="{% url 'index' %}" class="nav-link">< Go back</a><h3>Recipe Details</h3>
     <h1>{{recipe.name}}</h1>
+    <p>by {{recipe.author.name}}</p>
     <table>
         {% if ingredients %}
             <tr>
@@ -12,10 +13,10 @@
             </tr>
             {% for ingredient in ingredients %}
                 <tr>
-                    <td>{{ingredient.Ingredient.name}}</td>
+                    <td>{{ingredient.ingredient.name}}</td>
                     <td>
-                        {% if ingredient.Quantity %}
-                            {{ingredient.Quantity}}
+                        {% if ingredient.quantity %}
+                            {{ingredient.quantity}}
                         {% else %}
                             -----
                         {% endif %}

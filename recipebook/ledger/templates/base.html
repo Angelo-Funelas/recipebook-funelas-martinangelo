@@ -10,16 +10,23 @@
             font-family: Arial, sans-serif;
         }
         nav {
-            background-color: #00ddc0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: #0e4039;
             margin: 0;
             padding: 2rem;
+        }
+        nav > div:last-child {
+            text-align: right;
         }
         nav h1 {
             margin: 0;
             color: white;
         }
-        nav > a {
+        nav a {
             text-decoration: none;
+            color: white;
+            vertical-align: middle;
         }
         article {
             display: grid;
@@ -67,11 +74,26 @@
         tr > td:nth-child(2) {
             text-align: center;
         }
+        main > h1, main > p {
+            margin: 0;
+        }
+        main > p {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="{% url 'index' %}"><h1>Recipe Book</h1></a>
+        <div>
+            <a href="{% url 'index' %}"><h1>Recipe Book</h1></a>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
     </nav>
     <main>
         {% block body %}
