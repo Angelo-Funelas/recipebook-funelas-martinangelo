@@ -1,7 +1,7 @@
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from django.contrib import admin
-from .models import *
+from .models import Profile, Recipe, Ingredient, RecipeIngredient, RecipeImage
 
 # Register your models here.
 class ProfileInline(admin.StackedInline):
@@ -18,18 +18,22 @@ class IngredientAdmin(admin.ModelAdmin):
 
 class RecipeIngredientAdmin(admin.ModelAdmin):
     model = RecipeIngredient
-    list_display = ('ingredient', 'recipe', 'quantity')
-    list_filter = ('recipe', 'ingredient')
+    list_display = ('ingredient', 'recipe', 'quantity',)
+    list_filter = ('recipe', 'ingredient',)
 
 class RecipeIngredientInline(admin.TabularInline):
     model = RecipeIngredient
+    extra = 0
+    
+class RecipeImageInline(admin.TabularInline):
+    model = RecipeImage
     extra = 0
 
 class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
     search_fields = ('name',)
     list_display = ('name',)
-    inlines = [RecipeIngredientInline]
+    inlines = [RecipeIngredientInline, RecipeImageInline]
     
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
