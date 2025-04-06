@@ -31,26 +31,39 @@
         article {
             display: grid;
             grid-template-columns: repeat(auto-fill, 250px);
+            grid-template-rows: 16rem;
             grid-gap: 1rem;
         }
         article > a {
-            color: black;
-            font-size: 1.2rem;
-        }
-        article div {
             background-color: #ebeded;
-            aspect-ratio: 1;
-            display: grid;
-            grid-template-rows: 8fr 2fr;
-            border-radius: 6px;
-            padding: 1rem;
             box-shadow: 2px 2px 6px 0px rgba(132,132,132,0.75);
             -webkit-box-shadow: 2px 2px 6px 0px rgba(132,132,132,0.75);
             -moz-box-shadow: 2px 2px 6px 0px rgba(132,132,132,0.75);
+            border-radius: 6px;
+            color: black;
+            font-size: 1.2rem;
+            height: 100%;
+            padding: 1rem;
+        }
+        article > a:last-child > div > img {
+            background-color: transparent;
+        }
+        article > a:last-child > div > p {
+            text-align: center;
+        }
+        article > a > div {
+            height: 100%;
+            display: grid;
+            grid-template-rows: 8fr 2fr;
+            overflow: hidden;
         }
         .recipe-img {
             background-color: white;
+            height: 100%;
             width: 100%;
+            overflow: hidden;
+            object-fit: cover;
+            object-position: center;
         }
         main {
             margin: 4rem;

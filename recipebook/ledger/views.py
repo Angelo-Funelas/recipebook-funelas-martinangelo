@@ -16,3 +16,7 @@ def recipe(request, recipeID):
         "recipe": recipe,
         "ingredients": recipe.ingredients.all()
     })
+    
+@login_required
+def add(request):
+    return render(request, "new.html")
