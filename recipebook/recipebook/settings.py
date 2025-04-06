@@ -124,3 +124,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/recipes/list"
+
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
