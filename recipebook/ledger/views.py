@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import *
+from .models import Recipe
 
 # Create your views here.
 @login_required

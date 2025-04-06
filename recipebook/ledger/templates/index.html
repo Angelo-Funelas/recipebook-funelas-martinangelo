@@ -6,7 +6,7 @@
     <article>
         {% if recipes %}
             {% for recipe in recipes %}
-                <a href="{{recipe.get_absolute_url}}"><div><img src="" class="recipe-img"><p>{{recipe.name}}</p></div></a>
+                <a href="{{recipe.get_absolute_url}}"><div><img src="{{recipe.images.first.image.url}}" alt="{{recipe.images.first.description}}" class="recipe-img"><p>{{recipe.name}}</p></div></a>
             {% endfor %}
         {% else %}
             <h3>Sorry, no recipes found.</h3>
