@@ -2,61 +2,84 @@
 {% load static %}
 {% block title %}{{ recipe.name }} Recipe{% endblock %}
 {% block body %}
-    <style>
-        input {
-            display: block;
-            outline: none;
-            border: none;
-            border-bottom: 1px solid rgb(118, 118, 118);
-            font-size: 1rem;
-        }
-        table button {
-            width: 100%;
-        }
-    </style>
-    <a href="{% url 'index' %}" class="nav-link">< Go back</a>
-    <h3>New Recipe</h3>
-    <form action="">
-        {% csrf_token %}
-        <input type="text" placeholder="Recipe Name" name="recipe-name" autocomplete="off">
-        <p>Ingredients</p>
-        <table>
-            <tr>
-                <th>Ingredient</th>
-                <th>Quantity</th>
-            </tr>
-            <tr>
-                <td>
-                    <input name="ingredient-1" placeholder="Ingredient" list="ingredients" autocomplete="off">
-                </td>
-                <td>
-                    <input name="ingredient-1-quantity" placeholder="Quantity" autocomplete="off">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <button>+ Add Ingredient</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <datalist id="ingredients">
-    </datalist> 
-    <script>
-        var table = document.querySelector('table');
-        var addIngButton = document.querySelector('table button');
-        addIngButton.addEventListener('click', function(e) {
-            e.preventDefault()
-            var newRow = document.createElement('tr');
-            var ingredientNameInput = document.createElement('input');
-            var ingredientQuantityInput = document.createElement('input');
-            var cell1 = document.createElement('td');
-            var cell2 = document.createElement('td');
-            cell1.append(ingredientNameInput);
-            cell2.append(ingredientQuantityInput);
-            newRow.append(cell1, cell2);
-            console.log(e.target.parentElement.parentElement)
-            table.querySelector('tbody').insertBefore(newRow, e.target.parentElement.parentElement);
-        })
-    </script>
+  <style>
+    input[type="text"] {
+      display: block;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid rgb(118, 118, 118);
+      font-size: 1rem;
+    }
+    table button {
+      width: 100%;
+    }
+  </style>
+  <a href="{% url 'index' %}" class="nav-link">< Go back</a>
+  <h3>New Recipe</h3>
+  <form action="{% url 'add' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Recipe Name" name="recipe-name" autocomplete="off" required>
+    <p>Ingredients</p>
+    <table>
+      <tr>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="ingredient-1-name" placeholder="(e.g. milk, sugar)" list="ingredients" autocomplete="off" required>
+        </td>
+        <td>
+          <input type="text" name="ingredient-1-qty" placeholder="(e.g. 1 cup, 3 teaspoons)" autocomplete="off" required>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button>+ Add Ingredient</button>
+        </td>
+      </tr>
+    </table>
+    <input type="number" name="ingredient-count" id="ingredient-count" value="1" hidden>
+    <input type="submit" value="Save Recipe">
+  </form>
+  <datalist id="ingredients">
+    {% for ingredient in ingredients %}
+    <option value="{{ ingredient.name }}"></option>
+    {% endfor %}
+  </datalist> 
+  <script>
+    var ingredientCount = 1;
+    var table = document.querySelector('table');
+    var addIngButton = document.querySelector('table button');
+    addIngButton.addEventListener('click', function(e) {
+      e.preventDefault()
+      var newRow = document.createElement('tr');
+      var ingredientNameInput = document.createElement('input');
+      var ingredientQuantityInput = document.createElement('input');
+      var cell1 = document.createElement('td');
+      var cell2 = document.createElement('td');
+
+      ingredientCount++;
+      document.querySelector("#ingredient-count").value = ingredientCount;
+
+      ingredientNameInput.name = `ingredient-${ingredientCount}-name`;
+      ingredientNameInput.required = true;
+      ingredientNameInput.type = "text";
+      ingredientNameInput.placeholder = "(e.g. milk, sugar)";
+      ingredientNameInput.setAttribute('list', 'ingredients');
+      ingredientNameInput.autocomplete = "off";
+
+      ingredientQuantityInput.name = `ingredient-${ingredientCount}-qty`;
+      ingredientQuantityInput.required = true;
+      ingredientQuantityInput.type = "text";
+      ingredientQuantityInput.placeholder = "(e.g. 1 cup, 3 teaspoons)";
+      ingredientQuantityInput.autocomplete = "off";
+
+      cell1.append(ingredientNameInput);
+      cell2.append(ingredientQuantityInput);
+      newRow.append(cell1, cell2);
+      console.log(e.target.parentElement.parentElement);
+      table.querySelector('tbody').insertBefore(newRow, e.target.parentElement.parentElement);
+    })
+  </script>
 {% endblock %}
