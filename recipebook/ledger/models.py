@@ -2,9 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-# Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     name = models.CharField(max_length=50)
     bio = models.TextField(max_length=255, null=True)
     def __str__(self):
@@ -31,3 +30,8 @@ class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
     def __str__(self):
         return self.ingredient.name
+    
+class RecipeImage(models.Model):
+    image = models.ImageField(null=False, upload_to='images/')
+    description = models.TextField(max_length=255)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="images")

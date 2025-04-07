@@ -4,12 +4,12 @@
 {% block body %}
     <h3>Recipes</h3>
     <article>
-        {% if recipes %}
-            {% for recipe in recipes %}
-                <a href="{{recipe.get_absolute_url}}"><div><img src="" class="recipe-img"><p>{{recipe.name}}</p></div></a>
-            {% endfor %}
-        {% else %}
+        {% for recipe in recipes %}
+            <a href="{{recipe.get_absolute_url}}"><div><img src="{% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{% static 'ledger/images/empty.png' %}{% endif %}"
+            alt="{{recipe.images.first.description}}" class="recipe-img"><p>{{recipe.name}}</p></div></a>
+        {% empty %}
             <h3>Sorry, no recipes found.</h3>
-        {% endif %}
+        {% endfor %}
+        <a href="{% url 'add' %}"><div><img src="{% static 'ledger/images/add.png' %}" class="recipe-img"><p>Add new recipe.</p></div></a>
     </article>
 {% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ recipe.name }} Recipe{% endblock %}
+{% block body %}
+  <a href="{% url 'index' %}" class="nav-link">< Go back</a>
+  <h3>New Recipe</h3>
+  <form action="{% url 'add' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Recipe Name" name="recipe-name" autocomplete="off" required>
+    <p>Ingredients</p>
+    <table>
+      <tr>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" name="ingredient-1-name" placeholder="(e.g. milk, sugar)" list="ingredients" autocomplete="off" required>
+        </td>
+        <td>
+          <input type="text" name="ingredient-1-qty" placeholder="(e.g. 1 cup, 3 teaspoons)" autocomplete="off" required>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button>+ Add Ingredient</button>
+        </td>
+      </tr>
+    </table>
+    <input type="number" name="ingredient-count" id="ingredient-count" value="1" hidden>
+    <input type="submit" value="Save Recipe">
+  </form>
+  <datalist id="ingredients">
+    {% for ingredient in ingredients %}
+      <option value="{{ ingredient.name }}"></option>
+    {% endfor %}
+  </datalist> 
+  <script src="{% static 'ledger/scripts/new.js' %}"></script>
+{% endblock %}
