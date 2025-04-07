@@ -45,6 +45,9 @@
             height: 100%;
             padding: 1rem;
         }
+        article > a:last-child {
+            background-color: #f2f2f2;
+        }
         article > a:last-child > div > img {
             background-color: transparent;
         }
@@ -121,7 +124,9 @@
         #recipe-gallery > div:nth-child(2) > img {
             height: 100%;
             width: 10rem;
-            object-fit: contain;
+            aspect-ratio: 1;
+            object-fit: cover;
+            object-position: center;
         }
         #recipe-info-container {
             display: grid;
