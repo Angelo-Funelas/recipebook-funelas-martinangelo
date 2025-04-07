@@ -100,16 +100,18 @@ main > p {
     width: 40rem;
     gap: .5rem;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 30rem 10rem;
     overflow: hidden;
 }
 #recipe-gallery > div {
     background-color: #f6f6f6;
+    overflow: hidden;
 }
 #recipe-gallery > div:nth-child(1) > img {
     width: 100%;
-    object-fit: contain;
-    
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 #recipe-gallery > div:nth-child(2) {
     height: 100%;
@@ -125,6 +127,7 @@ main > p {
     aspect-ratio: 1;
     object-fit: cover;
     object-position: center;
+    cursor: pointer;
 }
 #recipe-info-container {
     display: grid;

@@ -13,9 +13,7 @@
                 </div>
                 <div>
                     {% for image in recipe.images.all %}
-                        {% if not forloop.first %}
-                            <img src="{{ image.image.url }}" alt="{{ image.description }}">
-                        {% endif %}
+                        <img src="{{ image.image.url }}" alt="{{ image.description }}">
                     {% endfor %}
                 </div>
             {% endif %}
@@ -45,4 +43,13 @@
             </table>
         </div>
     </div>
+    <script>
+      var recipe_gallery = document.querySelector('#recipe-gallery');
+      var focused_image = recipe_gallery.querySelector('div:nth-child(1) > img')
+      recipe_gallery.querySelectorAll('div:nth-child(2) > img').forEach((image) => {
+        image.addEventListener('click', (e) => {
+            focused_image.src = e.target.src
+        })
+      })
+    </script>
 {% endblock %}
