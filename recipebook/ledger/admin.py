@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib import admin
 from .models import Profile, Recipe, Ingredient, RecipeIngredient, RecipeImage
 
-# Register your models here.
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False

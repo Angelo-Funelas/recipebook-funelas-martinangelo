@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .models import Recipe, Ingredient, RecipeIngredient, RecipeImage
 
-# Create your views here.
 @login_required
 def index(request):
     return render(request, 'index.html', {
