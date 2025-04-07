@@ -2,6 +2,61 @@
 {% load static %}
 {% block title %}{{ recipe.name }} Recipe{% endblock %}
 {% block body %}
-    <a href="{% url 'index' %}" class="nav-link">< Go back</a><h3>Recipe Details</h3>
-    <h1>New Recipe</h1>
+    <style>
+        input {
+            display: block;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid rgb(118, 118, 118);
+            font-size: 1rem;
+        }
+        table button {
+            width: 100%;
+        }
+    </style>
+    <a href="{% url 'index' %}" class="nav-link">< Go back</a>
+    <h3>New Recipe</h3>
+    <form action="">
+        {% csrf_token %}
+        <input type="text" placeholder="Recipe Name" name="recipe-name" autocomplete="off">
+        <p>Ingredients</p>
+        <table>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity</th>
+            </tr>
+            <tr>
+                <td>
+                    <input name="ingredient-1" placeholder="Ingredient" list="ingredients" autocomplete="off">
+                </td>
+                <td>
+                    <input name="ingredient-1-quantity" placeholder="Quantity" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button>+ Add Ingredient</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <datalist id="ingredients">
+    </datalist> 
+    <script>
+        var table = document.querySelector('table');
+        var addIngButton = document.querySelector('table button');
+        addIngButton.addEventListener('click', function(e) {
+            e.preventDefault()
+            var newRow = document.createElement('tr');
+            var ingredientNameInput = document.createElement('input');
+            var ingredientQuantityInput = document.createElement('input');
+            var cell1 = document.createElement('td');
+            var cell2 = document.createElement('td');
+            cell1.append(ingredientNameInput);
+            cell2.append(ingredientQuantityInput);
+            newRow.append(cell1, cell2);
+            console.log(e.target.parentElement.parentElement)
+            table.querySelector('tbody').insertBefore(newRow, e.target.parentElement.parentElement);
+        })
+    </script>
 {% endblock %}
