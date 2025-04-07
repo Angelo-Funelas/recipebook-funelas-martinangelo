@@ -32,7 +32,7 @@
   </form>
   <datalist id="ingredients">
     {% for ingredient in ingredients %}
-    <option value="{{ ingredient.name }}"></option>
+      <option value="{{ ingredient.name }}"></option>
     {% endfor %}
   </datalist> 
   <script src="{% static 'ledger/scripts/new.js' %}"></script>
