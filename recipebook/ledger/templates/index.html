@@ -5,12 +5,7 @@
     <h3>Recipes</h3>
     <article>
         {% for recipe in recipes %}
-            <a href="{{recipe.get_absolute_url}}"><div><img src="
-                {% if recipe.images.first.image.url %}
-                    {{ recipe.images.first.image.url }}
-                {% else %}
-                    {% static 'ledger/images/empty.png' %}
-                {% endif %}"
+            <a href="{{recipe.get_absolute_url}}"><div><img src="{% if recipe.images.first.image.url %}{{ recipe.images.first.image.url }}{% else %}{% static 'ledger/images/empty.png' %}{% endif %}"
             alt="{{recipe.images.first.description}}" class="recipe-img"><p>{{recipe.name}}</p></div></a>
         {% empty %}
             <h3>Sorry, no recipes found.</h3>
